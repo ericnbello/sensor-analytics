@@ -9,7 +9,6 @@ To start, I set up a Jupyter notebook environment and imported the required libr
 ```python
 import faker
 import random
-import numpy as np
 from datetime import datetime
 import pandas as pd
 from datetime import datetime
@@ -95,13 +94,9 @@ def get_sensor_data(sensor_records):
 # Generating sensor data
 sensor_data = get_sensor_data(sensor_records)
 
-#####
 # Generate date and time data
 date_gen = list(gen_date())
 time_gen = list(gen_time())
-
-# # Create a list of sensor data dictionaries
-# sensor_data = []
 
 # Populate the list with sensor data dictionaries
 for _ in range(sensor_records_no):
@@ -147,43 +142,43 @@ sensor_df.head()
   <tbody>
     <tr>
       <th>0</th>
-      <td>84</td>
-      <td>69</td>
+      <td>83</td>
+      <td>93</td>
       <td>74</td>
-      <td>74</td>
-      <td>2018-10-26 17:09:14</td>
+      <td>81</td>
+      <td>2018-10-27 06:32:05</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>74</td>
-      <td>52</td>
-      <td>92</td>
-      <td>79</td>
-      <td>2018-10-26 23:09:14</td>
+      <td>85</td>
+      <td>60</td>
+      <td>76</td>
+      <td>55</td>
+      <td>2018-10-27 12:32:05</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>79</td>
-      <td>79</td>
-      <td>73</td>
-      <td>44</td>
-      <td>2018-10-27 05:09:14</td>
+      <td>71</td>
+      <td>68</td>
+      <td>66</td>
+      <td>57</td>
+      <td>2018-10-27 18:32:05</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>93</td>
-      <td>51</td>
-      <td>70</td>
-      <td>49</td>
-      <td>2018-10-27 11:09:14</td>
+      <td>83</td>
+      <td>52</td>
+      <td>69</td>
+      <td>47</td>
+      <td>2018-10-28 00:32:05</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>84</td>
       <td>94</td>
-      <td>88</td>
-      <td>82</td>
-      <td>2018-10-27 17:09:14</td>
+      <td>58</td>
+      <td>91</td>
+      <td>81</td>
+      <td>2018-10-28 06:32:05</td>
     </tr>
   </tbody>
 </table>
@@ -226,9 +221,9 @@ Using the generated user records, I create user profiles.
 
 ```python
 def get_users(user_records):
-    first_name, last_name, gender = get_random_name_and_gender()
     users = []
-    for user in user_records:
+    for _ in range(len(user_records)):
+        first_name, last_name, gender = get_random_name_and_gender()
         user = {
                 'first name': first_name,
                 'last name': last_name,
@@ -252,10 +247,6 @@ After generating user and sensor records, I integrated them into a single DataFr
 
 
 ```python
-# Converting sensor data to DataFrame
-sensor_df = pd.DataFrame(sensor_data)
-sensor_df.head()
-
 # Converting user profiles to DataFrame
 user_df = pd.DataFrame(users)
 user_df.head()
@@ -284,58 +275,58 @@ user_df.head()
   <tbody>
     <tr>
       <th>0</th>
-      <td>James</td>
-      <td>Jones</td>
-      <td>57</td>
+      <td>Patrick</td>
+      <td>Ferguson</td>
+      <td>99</td>
       <td>M</td>
-      <td>tommy59</td>
-      <td>6082 Jenkins Mews Apt. 591\nNew Amytown, MN 19857</td>
-      <td>christinalyons@example.com</td>
-      <td>[{'date': '2018-10-26', 'time': '17:10:27', 'o...</td>
+      <td>mclaughlindonald</td>
+      <td>187 Andre Haven Apt. 133\nMitchellmouth, MN 22315</td>
+      <td>mollyrandolph@example.net</td>
+      <td>[{'date': '2018-10-27', 'time': '06:32:07', 'o...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>James</td>
-      <td>Jones</td>
-      <td>92</td>
+      <td>Steven</td>
+      <td>Kent</td>
+      <td>94</td>
       <td>M</td>
-      <td>rbooth</td>
-      <td>5723 Edwards Crescent Suite 841\nWilliamsstad,...</td>
-      <td>diane18@example.net</td>
-      <td>[{'date': '2018-10-26', 'time': '17:10:27', 'o...</td>
+      <td>davidmosley</td>
+      <td>538 Collins Extension Apt. 957\nYoungtown, UT ...</td>
+      <td>edunlap@example.com</td>
+      <td>[{'date': '2018-10-27', 'time': '06:32:08', 'o...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>James</td>
-      <td>Jones</td>
-      <td>59</td>
+      <td>Christopher</td>
+      <td>Oneill</td>
+      <td>81</td>
       <td>M</td>
-      <td>nicholas49</td>
-      <td>158 Thomas Brooks\nSouth Michelleshire, PA 38213</td>
-      <td>pguerra@example.org</td>
-      <td>[{'date': '2018-10-26', 'time': '17:10:27', 'o...</td>
+      <td>jamesjulie</td>
+      <td>5951 Evans Grove\nPaulton, OK 31281</td>
+      <td>gregorygomez@example.com</td>
+      <td>[{'date': '2018-10-27', 'time': '06:32:08', 'o...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>James</td>
-      <td>Jones</td>
-      <td>45</td>
-      <td>M</td>
-      <td>ymitchell</td>
-      <td>9490 Carter Lock\nPort Seanmouth, CO 94111</td>
-      <td>wrichardson@example.com</td>
-      <td>[{'date': '2018-10-26', 'time': '17:10:27', 'o...</td>
+      <td>Holly</td>
+      <td>Good</td>
+      <td>70</td>
+      <td>F</td>
+      <td>julie32</td>
+      <td>078 John Cape\nLopezville, CO 64801</td>
+      <td>wyattjessica@example.com</td>
+      <td>[{'date': '2018-10-27', 'time': '06:32:08', 'o...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>James</td>
-      <td>Jones</td>
-      <td>33</td>
+      <td>Anthony</td>
+      <td>Nguyen</td>
+      <td>67</td>
       <td>M</td>
-      <td>duranjasmine</td>
-      <td>02048 Leon Ways\nNobleside, SC 11931</td>
-      <td>uburgess@example.net</td>
-      <td>[{'date': '2018-10-26', 'time': '17:10:27', 'o...</td>
+      <td>tylerbrandon</td>
+      <td>19962 Esparza Turnpike\nNorth Destiny, RI 40654</td>
+      <td>keithbaker@example.org</td>
+      <td>[{'date': '2018-10-27', 'time': '06:32:08', 'o...</td>
     </tr>
   </tbody>
 </table>
@@ -351,7 +342,7 @@ With the integrated DataFrame, I performed initial exploratory data analysis. I 
 ```python
 # Summary statistics for sensor data
 sensor_summary = sensor_df.describe()
-sensor_summary.describe()
+sensor_summary.head()
 ```
 
 
@@ -372,59 +363,38 @@ sensor_summary.describe()
   <tbody>
     <tr>
       <th>count</th>
-      <td>8.000000</td>
-      <td>8.000000</td>
-      <td>8.000000</td>
-      <td>8.000000</td>
+      <td>1001.000000</td>
+      <td>1001.000000</td>
+      <td>1001.000000</td>
+      <td>1001.000000</td>
     </tr>
     <tr>
       <th>mean</th>
-      <td>188.030348</td>
-      <td>182.175416</td>
-      <td>185.425767</td>
-      <td>177.933863</td>
+      <td>82.233766</td>
+      <td>72.530470</td>
+      <td>77.273726</td>
+      <td>67.274725</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>331.218618</td>
-      <td>333.405377</td>
-      <td>332.210895</td>
-      <td>335.092703</td>
+      <td>7.430700</td>
+      <td>13.537257</td>
+      <td>7.927988</td>
+      <td>13.824668</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>7.401984</td>
-      <td>13.290888</td>
-      <td>8.158374</td>
-      <td>13.951498</td>
+      <td>70.000000</td>
+      <td>50.000000</td>
+      <td>60.000000</td>
+      <td>40.000000</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>74.500000</td>
-      <td>59.000000</td>
-      <td>69.250000</td>
-      <td>51.250000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>81.420398</td>
-      <td>73.556219</td>
-      <td>78.623881</td>
-      <td>67.759701</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>89.750000</td>
-      <td>87.500000</td>
-      <td>87.500000</td>
-      <td>83.000000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>1005.000000</td>
-      <td>1005.000000</td>
-      <td>1005.000000</td>
-      <td>1005.000000</td>
+      <td>76.000000</td>
+      <td>60.000000</td>
+      <td>71.000000</td>
+      <td>56.000000</td>
     </tr>
   </tbody>
 </table>
@@ -436,7 +406,7 @@ sensor_summary.describe()
 ```python
 # Summary statistics for user profiles
 user_summary = user_df.describe()
-user_summary.describe()
+user_summary.head()
 ```
 
 
@@ -454,15 +424,15 @@ user_summary.describe()
   <tbody>
     <tr>
       <th>count</th>
-      <td>8.000000</td>
+      <td>504.000000</td>
     </tr>
     <tr>
       <th>mean</th>
-      <td>110.800949</td>
+      <td>59.039683</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>160.048934</td>
+      <td>24.142602</td>
     </tr>
     <tr>
       <th>min</th>
@@ -470,19 +440,7 @@ user_summary.describe()
     </tr>
     <tr>
       <th>25%</th>
-      <td>36.711179</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>60.781437</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>85.750000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>501.000000</td>
+      <td>38.000000</td>
     </tr>
   </tbody>
 </table>
@@ -493,7 +451,6 @@ user_summary.describe()
 At this stage, I checked for any missing or erroneous values that might require cleaning. Since the data was generated synthetically, it was relatively clean. However, in real-world scenarios, data cleaning would be a crucial step to ensure the accuracy and reliability of the analysis.
 
 #### Data Visualization
-We'll create visualizations to gain further insights.
 
 In this visualization, I aimed to explore the distribution of outside temperatures recorded by the IoT sensors. I used a histogram to display the frequency of temperature ranges. This provided insights into the typical temperature ranges experienced in the environment where the sensors were deployed. The histogram was divided into four bins, allowing for a clear representation of the data distribution.
 
@@ -564,7 +521,7 @@ plt.show()
     
 
 
-#### Advanced Analysis
+In this visualization, I constructed a heat map to explore the correlation between different attributes of the sensor data. The heat map displayed a color-coded grid where each cell represented the correlation coefficient between two attributes. A higher correlation coefficient was represented by a warmer color, indicating a stronger relationship. This visualization was crucial for identifying any significant correlations between attributes, providing insights into how environmental factors interacted with each other. By examining the heat map, I could pinpoint which attributes had the strongest impact on each other, aiding in a more comprehensive understanding of the data. This analysis was particularly useful for uncovering hidden patterns or relationships that may not be immediately evident from individual attribute distributions.
 
 
 ```python
